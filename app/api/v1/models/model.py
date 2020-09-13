@@ -10,7 +10,7 @@ def register_urls():
     headers = {"Authorization": "Bearer %s" % access_token}
 
     request_body = {
-        "shortCode": keys.shortCode,
+        "ShortCode": keys.shortCode,
         "ResponseType": "Completed",
         "ConfirmationURL": keys.BASE_URL + "/c2b/confirmation",
         "ValidationURL": keys.BASE_URL + "/c2b/validation"
