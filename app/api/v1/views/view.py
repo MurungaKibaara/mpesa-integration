@@ -6,6 +6,6 @@ MPESA = Blueprint('retrieve', __name__)
 def get():
     return jsonify({ "data": "transactions"})
 
-@MPESA.route('/retrieve', methods=['POST'])
+@MPESA.route('/lnmrequest', methods=['POST'])
 def post():
     return jsonify({ "data": "posted transactions"})
