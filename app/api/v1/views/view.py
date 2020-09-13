@@ -1,6 +1,6 @@
 from flask import Blueprint, request, jsonify
 import json
-from ..models.model import register_urls, simulate_transaction
+from ..models.model import register_urls, simulate_transaction, simulate_lnm_request
 MPESA = Blueprint('retrieve', __name__)
 
 @MPESA.route('/register_urls', methods=['POST'])
@@ -11,6 +11,11 @@ def register_url():
 @MPESA.route('/simulate', methods=['POST'])
 def simulate():
     response_data = simulate_transaction()
+    return response_data
+
+@MPESA.route('/lnmrequest', methods=['POST'])
+def lnmrequest():
+    response_data = simulate_lnm_request()
     return response_data
 
 @MPESA.route('/c2b/confirm', methods=['POST'])
@@ -28,5 +33,5 @@ def validate():
     file = open('validate.json', 'a')
     file.write(json.dumps(data))
     file.close()
-    
+
     return {"ResultCode": 0, "ResultDescription": "Accepted", "ThirdPartyTransID": "MarsianInThisBitch" }
