@@ -19,6 +19,7 @@ def confirm():
     file = open('confirm.json', 'a')
     file.write(json.dumps(data))
     file.close()
+
     return {"ResultCode": 0, "ResultDescription": "Accepted","ThirdPartyTransID": "MarsianInThisBitch" }
 
 @MPESA.route('/c2b/validation', methods=['POST'])
@@ -27,4 +28,5 @@ def validate():
     file = open('validate.json', 'a')
     file.write(json.dumps(data))
     file.close()
+    
     return {"ResultCode": 0, "ResultDescription": "Accepted", "ThirdPartyTransID": "MarsianInThisBitch" }
