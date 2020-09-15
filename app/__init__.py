@@ -3,18 +3,18 @@ from flask import Flask, jsonify
 from dotenv import load_dotenv
 from flask_cors import CORS
 from instance.config import APP_CONFIG, DevelopmentConfig
-from app.api.v1.models.database import init_db, create_tables
+# from app.api.v1.models.database import init_db, create_tables
 from app.api.v1.views.view import MPESA
 
 def create_app(config_name):
     '''create app'''
     app = Flask(__name__, instance_relative_config=True)
     CORS(app)
-    app.config.from_object(APP_CONFIG[config_name])
+    # app.config.from_object(APP_CONFIG[config_name])
 
-    with app.app_context():
-        init_db()
-        create_tables()
+    # with app.app_context():
+    #     init_db()
+    #     create_tables()
 
     app.config.from_pyfile('config.py')
     app.register_blueprint(MPESA, url_prefix='/api/v1')
