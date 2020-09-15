@@ -1,12 +1,15 @@
-CONSUMER_KEY = "moh4YQFs7LvyDsSCF2N6oyApOKCFbbpu"
-CONSUMER_SECRET = "OAPsNibglMNoQB56"
-mpesa_auth_url = "https://sandbox.safaricom.co.ke/oauth/v1/generate?grant_type=client_credentials"
+from os import getenv
+from dotenv import load_dotenv, find_dotenv
 
-BASE_URL = 'http://45.33.65.39'
-c2b_short_code = "600383"
-mpesa_endpoint = 'https://sandbox.safaricom.co.ke/mpesa/c2b/v1/registerurl'
-mpesa_simulation_endpoint = "https://sandbox.safaricom.co.ke/mpesa/c2b/v1/simulate"
+load_dotenv(find_dotenv())
 
-lnm_short_code = "174379"
-lnm_pass_key = "bfb279f9aa9bdbcf158e97dd71a467cd2e0c893059b10f78e6b72ada1ed2c919"
-mpesa_lnm_endpoint = "https://sandbox.safaricom.co.ke/mpesa/stkpush/v1/processrequest"
+CONSUMER_KEY = getenv("CONSUMER_KEY")
+CONSUMER_SECRET = getenv("CONSUMER_SECRET")
+mpesa_auth_url = getenv("mpesa_auth_url")
+BASE_URL= getenv("BASE_URL")
+c2b_short_code = getenv("c2b_short_code")
+mpesa_endpoint = getenv("mpesa_endpoint")
+mpesa_simulation_endpoint = getenv("mpesa_simulation_endpoint")
+lnm_short_code = getenv("lnm_short_code")
+lnm_pass_key = getenv("lnm_pass_key")
+mpesa_lnm_endpoint = getenv("mpesa_lnm_endpoint")
