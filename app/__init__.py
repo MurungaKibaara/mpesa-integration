@@ -4,25 +4,8 @@ from dotenv import load_dotenv
 from flask_cors import CORS
 from instance.config import APP_CONFIG, DevelopmentConfig
 import logging
-from logging import Formatter, FileHandler
 # from app.api.v1.models.database import init_db, create_tables
 from app.api.v1.views.view import MPESA
-
-
-LOGGER = logging.getLogger('whatever')
-file_handler = FileHandler('test.log')
-handler = logging.StreamHandler()
-file_handler.setFormatter(Formatter(
-    '%(asctime)s %(levelname)s: %(message)s '
-    '[in %(pathname)s:%(lineno)d]'
-))
-handler.setFormatter(Formatter(
-    '%(asctime)s %(levelname)s: %(message)s '
-    '[in %(pathname)s:%(lineno)d]'
-))
-LOGGER.addHandler(file_handler)
-LOGGER.addHandler(handler)
-LOGGER.setLevel(logging.INFO)
 
 def create_app(config_name):
     '''create app'''
@@ -36,8 +19,14 @@ def create_app(config_name):
 
     app.config.from_pyfile('config.py')
     app.register_blueprint(MPESA, url_prefix='/api/v1')
-    LOGGER.info('info log')
-    LOGGER.debug('debug log')
+   
+
+    gunicorn_error_handlers = logging.getLogger('gunicorn.error').handlers
+    app.logger.handlers.extend(gunicorn_error_handlers )
+    app.logger.addHandler(myhandler1)
+    app.logger.addHandler(myhandler2)
+    app.logger.info('my info')
+    app.logger.debug('debug message')
 
     @app.errorhandler(404)
     def resource_not_found(message):
