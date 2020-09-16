@@ -19,14 +19,9 @@ def create_app(config_name):
 
     app.config.from_pyfile('config.py')
     app.register_blueprint(MPESA, url_prefix='/api/v1')
-   
 
-    gunicorn_error_handlers = logging.getLogger('gunicorn.error').handlers
-    app.logger.handlers.extend(gunicorn_error_handlers )
-    app.logger.addHandler(myhandler1)
-    app.logger.addHandler(myhandler2)
-    app.logger.info('my info')
-    app.logger.debug('debug message')
+    logging.basicConfig(level='DEBUG')
+    logging.info('IMPORTANT LOG: ')
 
     @app.errorhandler(404)
     def resource_not_found(message):
